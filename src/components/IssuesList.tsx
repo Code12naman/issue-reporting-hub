@@ -13,7 +13,7 @@ interface IssuesListProps {
 const IssuesList = ({ issues: initialIssues, showFilters = true }: IssuesListProps) => {
   const [issues, setIssues] = useState<Issue[]>(initialIssues);
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [categoryFilter, setCategoryFilter] = useState<string>('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const { toast } = useToast();
 
   const handleUpvote = (issueId: string) => {
@@ -47,7 +47,7 @@ const IssuesList = ({ issues: initialIssues, showFilters = true }: IssuesListPro
     }
     
     // Filter by category
-    if (categoryFilter && issue.category !== categoryFilter) {
+    if (categoryFilter !== 'all' && issue.category !== categoryFilter) {
       return false;
     }
     

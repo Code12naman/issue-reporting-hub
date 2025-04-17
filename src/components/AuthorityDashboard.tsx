@@ -15,7 +15,7 @@ interface AuthorityDashboardProps {
 const AuthorityDashboard = ({ issues: initialIssues }: AuthorityDashboardProps) => {
   const [issues, setIssues] = useState<Issue[]>(initialIssues);
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [categoryFilter, setCategoryFilter] = useState<string>('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const { toast } = useToast();
 
   const handleStatusChange = (issueId: string, newStatus: 'open' | 'in-progress' | 'resolved') => {
@@ -49,7 +49,7 @@ const AuthorityDashboard = ({ issues: initialIssues }: AuthorityDashboardProps) 
     }
     
     // Filter by category
-    if (categoryFilter && issue.category !== categoryFilter) {
+    if (categoryFilter !== 'all' && issue.category !== categoryFilter) {
       return false;
     }
     
