@@ -1,10 +1,10 @@
-
 import { useState } from 'react';
 import { Issue, updateIssueStatus, Comment, upvoteIssue } from '../utils/mockData';
 import { useAuth } from '../contexts/AuthContext';
 import CommentSection from './CommentSection';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import Map from './Map';
 
 interface IssueDetailProps {
   issue: Issue;
@@ -177,18 +177,21 @@ const IssueDetail = ({ issue: initialIssue }: IssueDetailProps) => {
                 </div>
               )}
               
-              {issue.coordinates && (
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Location</h3>
-                  <div className="bg-gray-100 rounded-lg h-40 flex items-center justify-center">
-                    <p className="text-gray-500 text-sm">
-                      Map will be displayed here
-                      <br />
-                      Lat: {issue.coordinates.lat}, Lng: {issue.coordinates.lng}
-                    </p>
-                  </div>
-                </div>
-              )}
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Location</h3>
+                {issue.coordinates ? (
+                  <Map 
+                    coordinates={issue.coordinates} 
+                    height="h-40" 
+                    showControls={false} 
+                  />
+                ) : (
+                  <Map 
+                    height="h-40" 
+                    showControls={false} 
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>

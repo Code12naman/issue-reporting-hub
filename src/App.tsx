@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import IssueView from "./pages/IssueView";
 import NotFound from "./pages/NotFound";
+import IndiaMap from "./pages/IndiaMap";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/issues/:issueId" element={<IssueView />} />
+            <Route path="/india-map" element={<IndiaMap />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import { useAuth } from '../contexts/AuthContext';
 import IssuesList from '../components/IssuesList';
 import ReportForm from '../components/ReportForm';
+import MapButton from '../components/MapButton';
 import { mockIssues } from '../utils/mockData';
 import { Button } from '@/components/ui/button';
 
@@ -39,6 +40,7 @@ const Index = () => {
                         View Dashboard
                       </Button>
                     </Link>
+                    <MapButton />
                   </>
                 ) : (
                   <>
@@ -52,6 +54,7 @@ const Index = () => {
                         Log In
                       </Button>
                     </Link>
+                    <MapButton />
                   </>
                 )}
               </div>
@@ -116,9 +119,14 @@ const Index = () => {
         <div className="fixit-container">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold">Recent Issues</h2>
-            <Link to="/dashboard" className="text-fixit-primary hover:text-fixit-secondary">
-              View all issues →
-            </Link>
+            <div className="flex gap-4">
+              <Link to="/dashboard" className="text-fixit-primary hover:text-fixit-secondary">
+                View all issues →
+              </Link>
+              <Link to="/india-map" className="text-fixit-primary hover:text-fixit-secondary">
+                View India Map →
+              </Link>
+            </div>
           </div>
           
           <IssuesList issues={recentIssues} showFilters={false} />
