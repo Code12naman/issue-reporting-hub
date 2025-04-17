@@ -6,7 +6,9 @@ import { useAuth } from '../contexts/AuthContext';
 import IssuesList from '../components/IssuesList';
 import AuthorityDashboard from '../components/AuthorityDashboard';
 import ReportForm from '../components/ReportForm';
+import DashboardCharts from '../components/DashboardCharts';
 import { getIssues } from '../utils/mockData';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const Dashboard = () => {
   const { user, isAuthenticated, isAuthority } = useAuth();
@@ -57,11 +59,24 @@ const Dashboard = () => {
             )}
           </div>
           
-          {isAuthority() ? (
-            <AuthorityDashboard issues={issues} />
-          ) : (
-            <IssuesList issues={issues} />
-          )}
+          <Tabs defaultValue="issues" className="w-full mb-8">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="issues">Issues List</TabsTrigger>
+              <TabsTrigger value="analytics">Analytics & Insights</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="issues">
+              {isAuthority() ? (
+                <AuthorityDashboard issues={issues} />
+              ) : (
+                <IssuesList issues={issues} />
+              )}
+            </TabsContent>
+            
+            <TabsContent value="analytics">
+              <DashboardCharts />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </div>

@@ -9,7 +9,7 @@ const MapButton = () => {
     <Link to="/india-map">
       <Button variant="outline" className="flex items-center gap-2 bg-white/80 hover:bg-white/90 text-fixit-primary border-fixit-primary/30 transition-all hover:shadow-md">
         <MapIcon className="h-4 w-4" />
-        <span>India Map</span>
+        <span>View Map</span>
       </Button>
     </Link>
   );

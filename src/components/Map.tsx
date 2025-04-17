@@ -196,8 +196,9 @@ const Map = ({
           const popup = new mapboxgl.default.Popup({ offset: 10 })
             .setHTML(`<h3>${city.name}</h3>`);
           
+          // Fix: Convert array to LngLatLike object
           new mapboxgl.default.Marker(el)
-            .setLngLat(city.coordinates)
+            .setLngLat({ lng: city.coordinates[0], lat: city.coordinates[1] })
             .setPopup(popup)
             .addTo(map);
         });
